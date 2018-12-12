@@ -21,6 +21,9 @@ function sanitize($request){
     return $request;
 }
 
+var_dump($_GET);
+var_dump($_POST);
+
 if (!($_GET['f'])){
     //exit
 } else {

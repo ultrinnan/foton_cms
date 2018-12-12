@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="//fedirko.pro/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FEDIRKO.PRO - Full Stack Web Development and Solutions</title>
+    <title>PHOTON CMS</title>
     <!--    Open Graph protocol-->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fedirko.pro/">
@@ -27,47 +27,18 @@
     .first { background: url('//fedirko.pro/images/bg/space_bg.jpg') no-repeat center; background-size: cover;}
 </style>
 
-<header>
-    <div class="container">
-        <a class="logo" href="//fedirko.pro/"></a>
-        <div class="mobile_menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul id="w0" class="top_menu nav"><li class="dropdown"><a class="dropdown-toggle" href="//fedirko.pro/" data-toggle="dropdown">professionals <span class="caret"></span></a><ul id="w1" class="dropdown-menu"><li><a href="//fedirko.pro/about" tabindex="-1">About</a></li>
-                    <li><a href="//fedirko.pro/how-we-work" tabindex="-1">How we work</a></li>
-                    <li><a href="//fedirko.pro/proof-of-concept" tabindex="-1">Proof of Concept</a></li>
-                    <li><a href="//fedirko.pro/terms-and-conditions" tabindex="-1">Terms and conditions</a></li>
-                    <li><a href="//fedirko.pro/privacy-policy" tabindex="-1">Privacy policy</a></li>
-                    <li><a href="//fedirko.pro/donations" tabindex="-1">Donations</a></li></ul></li>
-            <li class="dropdown"><a class="dropdown-toggle" href="//fedirko.pro/solutions" data-toggle="dropdown">Solutions <span class="caret"></span></a><ul id="w2" class="dropdown-menu"><li><a href="//fedirko.pro/solutions/full-cycle-development" tabindex="-1">FULL-CYCLE DEVELOPMENT</a></li>
-                    <li><a href="//fedirko.pro/solutions/wordpress-solutions" tabindex="-1">WORDPRESS SOLUTIONS</a></li>
-                    <li><a href="//fedirko.pro/solutions/mobile-solutions" tabindex="-1">MOBILE SOLUTIONS</a></li>
-                    <li><a href="//fedirko.pro/solutions/help-and-support" tabindex="-1">HELP AND SUPPORT</a></li></ul></li>
-            <li class="dropdown"><a class="dropdown-toggle" href="//fedirko.pro/portfolio" data-toggle="dropdown">portfolio <span class="caret"></span></a><ul id="w3" class="dropdown-menu"><li><a href="//fedirko.pro/portfolio/serhii" tabindex="-1">Serhii&#039;s portfolio</a></li>
-                    <li><a href="//fedirko.pro/portfolio/mary" tabindex="-1">Mary&#039;s portfolio</a></li></ul></li>
-            <li id="contact_button"><a href="//fedirko.pro/contact">Contact us</a></li></ul>    </div>
-</header>
-
-<content>
-    <!--    todo: uncomment after multilang will be ready on backend-->
-
-    <div class="alert_box">
-    </div>
-    <section class="first">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>OUTSTANDING WEB SOLUTIONS<br>FOR YOUR BUSINESS</h1>
-                </div>
-            </div>
-        </div>
-    </section>
+<main>
     <section>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <form action="/photon/photon.php" method="post">
+                        <label for="username">Admin username</label>
+                        <input type="text" name="username" id="username" value="">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" value="">
+                        <input type="submit" value="Create admin and init Photon CMS">
+                    </form>
                     <h2>ADVANCED WEB & MOBILE SOLUTIONS,<br>ENTERPRISE APPS & PORTALS</h2>
                     <h3>Full-cycle servicing that covers every aspect of production and implementation of ideas</h3>
                 </div>
@@ -111,13 +82,6 @@
         </div>
     </section>
 
-    <!--todo: expertize magic-->
-    <!--<section style="background: green; min-height: 200px; color: white">-->
-    <!--    <div class="container">-->
-    <!--expertize magic-->
-    <!--    </div>-->
-    <!--</section>-->
-
     <!--todo: here should be also boxes with favorite projects-->
     <section class="favorite_works">
         <div class="container-fluid">
@@ -128,16 +92,6 @@
                     <p>Our solutions yield benefit in Internet-facing, corporate and hybrid environments.</p>
                 </div>
             </div>
-            <!--        <div class="row favorite_works_box">-->
-            <!--            <div class="favorite_work">1</div>-->
-            <!--            <div class="favorite_work">2</div>-->
-            <!--            <div class="favorite_work">3</div>-->
-            <!--        </div>-->
-            <!--        <div class="row favorite_works_box">-->
-            <!--            <div class="favorite_work">4</div>-->
-            <!--            <div class="favorite_work">5</div>-->
-            <!--            <div class="favorite_work">6</div>-->
-            <!--        </div>-->
             <a class="check_all" href="//fedirko.pro/portfolio">check all of our projects</a>
         </div>
     </section>
@@ -198,7 +152,8 @@
                 </div>
             </div>
         </div>
-    </section></content>
+    </section>
+</main>
 
 <footer>
     <div class="container">
@@ -212,17 +167,8 @@
                 </div>
                 <div><a href="mailto:contact&#64;fedirko&#46;pro">contact&#64;fedirko&#46;pro</a></div>
                 <div class="footer_address">Ukraine, Kyiv</div>
-                <!--                <div><a href="#">Sitemap</a></div>-->
-                <!--                <div><a href="#">Web development blog</a></div>-->
             </div>
-            <div class="col-md-3 col-sm-3"><div class="footer_title"><a href="//fedirko.pro/">professionals</a></div><a href="//fedirko.pro/about">About</a><br><a href="//fedirko.pro/how-we-work">How we work</a><br><a href="//fedirko.pro/proof-of-concept">Proof of Concept</a><br><a href="//fedirko.pro/terms-and-conditions">Terms and conditions</a><br><a href="//fedirko.pro/privacy-policy">Privacy policy</a><br><a href="//fedirko.pro/donations">Donations</a><br></div><div class="col-md-3 col-sm-3"><div class="footer_title"><a href="//fedirko.pro/solutions">Solutions</a></div><a href="//fedirko.pro/solutions/full-cycle-development">FULL-CYCLE DEVELOPMENT</a><br><a href="//fedirko.pro/solutions/wordpress-solutions">WORDPRESS SOLUTIONS</a><br><a href="//fedirko.pro/solutions/mobile-solutions">MOBILE SOLUTIONS</a><br><a href="//fedirko.pro/solutions/help-and-support">HELP AND SUPPORT</a><br></div><!--            <div class="col-md-2">-->
-            <!--                <div class="footer_title">-->
-            <!--                    <a href="//fedirko.pro/interesting">See also</a>-->
-            <!--                </div>-->
-            <!--                <a href="#">One</a><br>-->
-            <!--                <a href="#">Two</a><br>-->
-            <!--                <a href="#">Three</a><br>-->
-            <!--            </div>-->
+            <div class="col-md-3 col-sm-3"><div class="footer_title"><a href="//fedirko.pro/">professionals</a></div><a href="//fedirko.pro/about">About</a><br><a href="//fedirko.pro/how-we-work">How we work</a><br><a href="//fedirko.pro/proof-of-concept">Proof of Concept</a><br><a href="//fedirko.pro/terms-and-conditions">Terms and conditions</a><br><a href="//fedirko.pro/privacy-policy">Privacy policy</a><br><a href="//fedirko.pro/donations">Donations</a><br></div><div class="col-md-3 col-sm-3"><div class="footer_title"><a href="//fedirko.pro/solutions">Solutions</a></div><a href="//fedirko.pro/solutions/full-cycle-development">FULL-CYCLE DEVELOPMENT</a><br><a href="//fedirko.pro/solutions/wordpress-solutions">WORDPRESS SOLUTIONS</a><br><a href="//fedirko.pro/solutions/mobile-solutions">MOBILE SOLUTIONS</a><br><a href="//fedirko.pro/solutions/help-and-support">HELP AND SUPPORT</a><br></div>
         </div>
     </div>
     <div class="container-fluid">
@@ -236,6 +182,6 @@
 <script src="//fedirko.pro/assets/77b47423/yii.js?v=1525689513"></script>
 <script src="//fedirko.pro/assets/842e7e99/js/bootstrap.min.js?v=1525689513" async="async"></script>
 <script src="//fedirko.pro/js/main.min.js?v=1530539347"></script></body>
-<script src="/core/photon.js"></script>
+<script src="../photon/photon.js"></script>
 </body>
 </html>
