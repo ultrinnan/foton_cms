@@ -10,11 +10,46 @@ function init(){
     var photon_top = document.createElement('div');
     photon_top.className = 'photon_top';
     photon_top.style.cssText = 'width:100%;min-height:100px;background:#fff;padding:8px 16px;';
-    photon_top.innerHTML = '<hr><h2>Photon CMS installation</h2><hr><h5>you can always refer to the <a href="https://fedirko.pro/solutions/photon" target="_blank">manual</a> for any help.</h5><hr>';
-
-    document.body.appendChild(photon_top);
+    photon_top.innerHTML = '<hr><h2>Photon CMS installation</h2><hr><h5>you can always refer to the <a href="https://fedirko.pro/solutions/photon" target="_blank">manual</a> for any help.</h5><hr><style>\n' +
+        '                        #f_form{\n' +
+        '                            text-align: center;\n' +
+        '                            max-width: 750px;\n' +
+        '                            margin: auto;\n' +
+        '                        }\n' +
+        '                        .f_dark_button {\n' +
+        '                            color: #39675a;\n' +
+        '                            border: 2px solid #39675a;\n' +
+        '                            text-transform: uppercase;\n' +
+        '                            padding: 8px 16px;\n' +
+        '                            border-radius: 2px;\n' +
+        '                            display: inline-block;\n' +
+        '                            background: white;\n' +
+        '                        }\n' +
+        '                        .f_dark_button:hover {\n' +
+        '                            color: #fff;\n' +
+        '                            background: #39675a;\n' +
+        '                            transition: .5s;\n' +
+        '                        }\n' +
+        '                    </style>\n' +
+        '                    <form id="f_form" method="post">\n' +
+        '                        <p>\n' +
+        '                            <label for="username">Admin username:</label>\n' +
+        '                            <input type="text" name="username" id="username" value="">\n' +
+        '                        </p>\n' +
+        '                        <p>\n' +
+        '                            <label for="password">Admin password:</label>\n' +
+        '                            <input type="password" name="password" id="password" value="">\n' +
+        '                        </p>\n' +
+        '                        <button class="f_dark_button">Create account for Administrator and init Photon CMS</button>\n' +
+        '                    </form><hr>';
 
     document.body.insertAdjacentElement('afterbegin', photon_top);
+
+    let f_form = document.getElementById('f_form');
+    f_form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        console.log(f_form);
+    })
 }
 
 function sanitize(str) {
