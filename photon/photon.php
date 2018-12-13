@@ -21,14 +21,40 @@ function sanitize($request){
     return $request;
 }
 
+function init($login = null, $password = null){
+    echo 'init start';
+    $path = realpath(dirname(__FILE__)).'/';
+    $new_a = $path . "photon.a";
+    if (file_exists($new_a)){
+        return [
+            'result' => 'error',
+            'text' => 'Photon is already initialized.'
+        ];
+    } else {
+        if (fopen($new_a, 'w')){
+            //todo: write credentials to file
+            return [
+                'result' => 'ok',
+                'text' => 'Photon is successfully initialized.'
+            ];
+        } else {
+            return [
+                'result' => 'error',
+                'text' => 'Photon cannot create file.'
+            ];
+        }
+    }
+}
+
 var_dump($_GET);
 var_dump($_POST);
+init();
+
 
 if (!($_GET['f'])){
     //exit
 } else {
     env_check();
-
     //todo: sanityze and other security staff
     $request = sanitize($_GET['f']);
 

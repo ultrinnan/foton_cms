@@ -32,13 +32,15 @@ function init(){
         '                        }\n' +
         '                    </style>\n' +
         '                    <form id="f_form" method="post">\n' +
+        '                        <input type="hidden" name="f" class="f_input" value="init">\n' +
+        '                        <input type="hidden" name="f_" class="f_input" value="init">\n' +
         '                        <p>\n' +
         '                            <label for="username">Admin username:</label>\n' +
-        '                            <input type="text" name="username" id="username" value="">\n' +
+        '                            <input type="text" name="username" id="username" class="f_input" value="">\n' +
         '                        </p>\n' +
         '                        <p>\n' +
         '                            <label for="password">Admin password:</label>\n' +
-        '                            <input type="password" name="password" id="password" value="">\n' +
+        '                            <input type="password" name="password" id="password" class="f_input" value="">\n' +
         '                        </p>\n' +
         '                        <button class="f_dark_button">Create account for Administrator and init Photon CMS</button>\n' +
         '                    </form><hr>';
@@ -48,7 +50,7 @@ function init(){
     let f_form = document.getElementById('f_form');
     f_form.addEventListener('submit', function (e) {
         e.preventDefault();
-        console.log(f_form);
+        ajax_post();
     })
 }
 
@@ -63,19 +65,33 @@ function sanitize(str) {
  */
 function ajax_get(params) {
     let f_url = '/photon/photon.php?' + params;
-    if (window.XMLHttpRequest) {
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    } else {  // code for IE6, IE5
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange=function() {
-        if (this.readyState===4 && this.status===200) {
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange=function() {
+        if (this.readyState === 4 && this.status === 200) {
             photon_result = this.responseText;
         }
     };
-    xmlhttp.open("GET", f_url, true);
-    xmlhttp.send();
+    xmlHttp.open("GET", f_url, true);
+    xmlHttp.send();
+}
+
+function ajax_post(){
+    let elements = document.getElementsByClassName("f_input");
+    let formData = new FormData();
+    for(let i=0; i<elements.length; i++)
+    {
+        formData.append(elements[i].name, elements[i].value);
+    }
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState === 4 && xmlHttp.status === 200)
+        {
+            alert(xmlHttp.responseText);
+        }
+    };
+    xmlHttp.open("POST", "/photon/photon.php");
+    xmlHttp.send(formData);
 }
 
 /**
@@ -95,25 +111,9 @@ function action() {
 }
 
 function process(result){
-    console.log(result)
+    console.log(result);
     init();
 }
-
-// function ajax_post(url, data, success) {
-//     var httpRequest = new XMLHttpRequest()
-//     httpRequest.onreadystatechange = function (data) {
-//         // code
-//     }
-//     httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-//     httpRequest.open('POST', url)
-//     httpRequest.send('username=' + encodeURIComponent(username))
-// }
-//
-// // example request
-// postAjax('../photon/photon.php', 'p1=1&p2=Hello+World', function(data){ console.log(data); });
-//
-// // example request with data object
-// postAjax('../photon/photon.php', { p1: 1, p2: 'Hello World' }, function(data){ console.log(data); });
 
 document.addEventListener("DOMContentLoaded", function(event) {
     // console.log('Photon is ready!');
