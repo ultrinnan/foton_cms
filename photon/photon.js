@@ -7,7 +7,7 @@ function photon_wrapper() {
 
 //some init actions here
 function init(){
-    var photon_top = document.createElement('div');
+    let photon_top = document.createElement('div');
     photon_top.className = 'photon_top';
     photon_top.style.cssText = 'width:100%;min-height:100px;background:#fff;padding:8px 16px;';
     photon_top.innerHTML = '<hr><h2>Photon CMS installation</h2><hr><h5>you can always refer to the <a href="https://fedirko.pro/solutions/photon" target="_blank">manual</a> for any help.</h5><hr><style>\n' +
@@ -33,7 +33,6 @@ function init(){
         '                    </style>\n' +
         '                    <form id="f_form" method="post">\n' +
         '                        <input type="hidden" name="f" class="f_input" value="init">\n' +
-        '                        <input type="hidden" name="f_" class="f_input" value="init">\n' +
         '                        <p>\n' +
         '                            <label for="username">Admin username:</label>\n' +
         '                            <input type="text" name="username" id="username" class="f_input" value="">\n' +
@@ -68,7 +67,7 @@ function ajax_get(params) {
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange=function() {
         if (this.readyState === 4 && this.status === 200) {
-            photon_result = this.responseText;
+            photon_result = JSON.parse(this.responseText);
         }
     };
     xmlHttp.open("GET", f_url, true);
@@ -110,21 +109,25 @@ function action() {
     }
 }
 
-function process(result){
-    console.log(result);
-    init();
+function process(response){
+    console.log(response);
+    console.log(response.result);
+    if (response.result === 'error'){
+        console.warn('Response - ' + response.text);
+    } else if (response.result === 'ok') {
+        switch (response.text) {
+            case 'init':
+                init();
+                break;
+            case 'fdfdf':
+                // some other action
+                break;
+        }
+    } else {
+        console.error(response);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    // console.log('Photon is ready!');
     action();
-
-    // // example request
-    // ajax_get('../photon.php/?p1=1&p2=Hello+World', function(data){ console.log(data); });
-    //
-    // ajax_get('../photon.php/?p1=1&p2=Hello+World', function(data){
-    //     var json = JSON.parse(data);
-    //     console.log(json);
-    // });
-
 });

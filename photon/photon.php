@@ -1,4 +1,9 @@
 <?php
+$result = [
+    'result' => 'error',
+    'text' => 'unknown request'
+];
+
 //todo: some environment checkings
 function env_check(){
 //    if (in_array('mod_rewrite', apache_get_modules())){
@@ -22,7 +27,6 @@ function sanitize($request){
 }
 
 function init($login = null, $password = null){
-    echo 'init start';
     $path = realpath(dirname(__FILE__)).'/';
     $new_a = $path . "photon.a";
     if (file_exists($new_a)){
@@ -30,48 +34,61 @@ function init($login = null, $password = null){
             'result' => 'error',
             'text' => 'Photon is already initialized.'
         ];
-    } else {
-        if (fopen($new_a, 'w')){
+    } else if($login && $password) {
+        $admin = fopen($new_a, 'w');
             //todo: write credentials to file
-            return [
-                'result' => 'ok',
-                'text' => 'Photon is successfully initialized.'
-            ];
-        } else {
-            return [
-                'result' => 'error',
-                'text' => 'Photon cannot create file.'
-            ];
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        fwrite($admin, $login . '=' . $hash);
+        fclose($admin);
+        return [
+            'result' => 'ok',
+            'text' => 'Photon is successfully initialized.'
+        ];
+    } else {
+        return [
+            'result' => 'ok',
+            'text' => 'init'
+        ];
+    }
+}
+
+if ($_GET){
+    if ($_GET['f']){
+        env_check();
+        //todo: sanityze and other security staff
+        $request = sanitize($_GET['f']);
+
+        switch ($request){
+            case 'init':
+                $result = init();
+                break;
+            case 'edit':
+                echo 'edit';
+                break;
+            default:
+                break;
+        }
+    }
+} else if ($_POST){
+    if ($_POST['f']){
+        foreach ($_POST as $item){
+            $request[] = sanitize($item);
+        }
+        echo '<pre>';
+        var_dump($request);
+        echo '</pre>';
+        switch ($request){
+            case 'init':
+                return $response = init();
+                break;
+            case 'edit':
+                echo 'edit';
+                break;
+            default:
+                break;
         }
     }
 }
 
-var_dump($_GET);
-var_dump($_POST);
-init();
-
-
-if (!($_GET['f'])){
-    //exit
-} else {
-    env_check();
-    //todo: sanityze and other security staff
-    $request = sanitize($_GET['f']);
-
-    echo '<pre>';
-    var_dump($request);
-    echo '</pre>';
-    switch ($request){
-        case 'admin':
-            echo 'admin';
-            break;
-        case 'init':
-            echo 'init';
-            break;
-        case 'edit':
-            echo 'edit';
-            break;
-        default:
-            break;
-    }
-}
+echo json_encode($result);
+exit;
